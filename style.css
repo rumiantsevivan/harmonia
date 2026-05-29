@@ -6,17 +6,17 @@
 
 :root {
   /* Цвета (переопределяются из config.js через JS) */
-  --accent: #D98FB5;
-  --accent-dark: #B96A93;
-  --teal: #5CC4BC;
-  --ink: #2F2530;
-  --ink-soft: #4A3D4A;
-  --muted: #8C7A88;
-  --line: #E8D3DE;
-  --paper: #FAEEF2;
+  --accent: #E64D8B;
+  --accent-dark: #B83870;
+  --teal: #3FA8A8;
+  --ink: #2C2A2E;
+  --ink-soft: #4A4548;
+  --muted: #8A8285;
+  --line: #EDD8DF;
+  --paper: #FAEFF2;
   --paper-soft: #F4DDE6;
-  --paper-dark: #3A2638;
-  --paper-dark-soft: #2A1C29;
+  --paper-dark: #3FA8A8;
+  --paper-dark-soft: #2D8989;
 
   /* Типографика — Soft & Feminine */
   --display: "Cormorant Garamond", "Iowan Old Style", "Hoefler Text", "Georgia", "Times New Roman", serif;
