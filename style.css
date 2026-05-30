@@ -304,7 +304,7 @@ button { font: inherit; cursor: pointer; }
   padding-bottom: 4px;
   border-bottom: 1px solid color-mix(in srgb, var(--accent) 50%, transparent);
 }
-.eyebrow--inverse { color: var(--paper); border-bottom-color: color-mix(in srgb, var(--paper) 60%, transparent); }
+.eyebrow--inverse { color: var(--accent); border-bottom-color: color-mix(in srgb, var(--accent) 60%, transparent); }
 .section__title {
   font-family: var(--display);
   font-weight: 500;
@@ -315,7 +315,7 @@ button { font: inherit; cursor: pointer; }
   max-width: 900px;
 }
 .section__title em { font-style: italic; color: var(--accent); font-weight: 400; }
-.section__title--inverse em { color: var(--paper); }
+.section__title--inverse em { color: var(--accent); }
 .section__lede {
   font-size: 18px;
   max-width: 540px;
@@ -525,7 +525,7 @@ button { font: inherit; cursor: pointer; }
 .contacts__block { margin-top: 28px; }
 .contacts__label {
   font-size: 11px; letter-spacing: .3em; text-transform: uppercase;
-  color: color-mix(in srgb, var(--paper) 75%, transparent); margin-bottom: 8px;
+  color: var(--accent); margin-bottom: 8px;
 }
 .contacts__value {
   font-family: var(--display);
@@ -595,7 +595,7 @@ button { font: inherit; cursor: pointer; }
   color: var(--paper);
   display: inline-flex; gap: 8px;
 }
-.footer__mark { color: var(--paper); }
+.footer__mark { color: var(--accent); }
 .footer__est { letter-spacing: .12em; text-transform: uppercase; font-size: 11px; }
 .footer__signature { font-size: 12px; opacity: .7; }
 
