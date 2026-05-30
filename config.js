@@ -243,15 +243,15 @@ window.SITE_CONFIG = {
     ],
   },
 
-  hero_image: "https://images.unsplash.com/photo-1519415943484-9fa1873496d4?w=1800&q=85",
+  hero_image: "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1800&q=85",
 
   gallery: [
     "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=900&q=80",
     "https://images.unsplash.com/photo-1610992015732-2449b76344bc?w=900&q=80",
     "https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=900&q=80",
-    "https://images.unsplash.com/photo-1604948501466-4e9c339b9c24?w=900&q=80",
+    "https://images.unsplash.com/photo-1599948128020-9a44505b0d1b?w=900&q=80",
     "https://images.unsplash.com/photo-1607779097040-26e80aa78e66?w=900&q=80",
-    "https://images.unsplash.com/photo-1601049413274-1cfeaadbcbd3?w=900&q=80",
+    "https://images.unsplash.com/photo-1612817288484-6f916006741a?w=900&q=80",
   ],
 
   reviews: [
