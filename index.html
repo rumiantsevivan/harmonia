@@ -13,23 +13,23 @@
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Marck+Script&family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="style.css?v=6" />
+  <link rel="stylesheet" href="style.css?v=5" />
 </head>
 <body>
-  <!-- Шапка -->
+  <!-- Шапка (мини, прилипает к верху) -->
   <header class="topbar" id="topbar">
-    <a class="topbar__brand" href="index.html">
+    <a class="topbar__brand" href="#top">
       <span class="topbar__mark">✦</span>
       <span data-bind="name">—</span>
     </a>
     <nav class="topbar__nav">
-      <a href="uslugi.html">Услуги</a>
-      <a href="raboty.html">Работы</a>
-      <a href="otzyvy.html">Отзывы</a>
-      <a href="mastera.html">Мастера</a>
-      <a href="kontakty.html">Контакты</a>
+      <a href="#services">Услуги</a>
+      <a href="#gallery">Работы</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#masters">Мастера</a>
+      <a href="#contacts">Контакты</a>
     </nav>
-    <a class="topbar__cta" href="kontakty.html">Записаться</a>
+    <a class="topbar__cta" href="#contacts">Записаться</a>
   </header>
 
   <!-- HERO -->
@@ -47,7 +47,7 @@
       <div class="hero__trust" id="hero-trust"><!-- наполняется из config.trust --></div>
       <p class="hero__offer" data-bind="offer">—</p>
       <div class="hero__cta-row">
-        <a class="btn btn--solid btn--with-arrow" href="kontakty.html">
+        <a class="btn btn--solid btn--with-arrow" href="#contacts">
           <span>Записаться</span>
           <svg class="btn__arrow" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
@@ -65,51 +65,93 @@
     <div class="hero__scroll">Листайте вниз ↓</div>
   </section>
 
-  <!-- НАВИГАЦИЯ ПО САЙТУ -->
-  <section class="section section--paper" id="overview">
+  <!-- УСЛУГИ -->
+  <section class="section section--paper" id="services">
     <div class="section__head">
-      <span class="eyebrow">00 / Что внутри</span>
-      <h2 class="section__title">Главное<br /><em>в деталях</em></h2>
+      <span class="eyebrow">01 / Услуги</span>
+      <h2 class="section__title">Прайс<br /><em>без сюрпризов</em></h2>
       <p class="section__lede">
-        Выбирай, что интересно — расскажем и покажем.
+        Фиксированные цены, никаких «допов» в кассе. Что в списке — то и платишь.
       </p>
     </div>
+    <div class="services-root" id="services-list">
+      <!-- наполняется из config.services -->
+    </div>
+  </section>
 
-    <div class="nav-cards">
-      <a class="nav-card" href="uslugi.html">
-        <div class="nav-card__num">01</div>
-        <h3 class="nav-card__title">Услуги</h3>
-        <p class="nav-card__lede">Электроэпиляция по минутам, лазер, шугаринг, маникюр, педикюр — с понятными ценами.</p>
-        <span class="nav-card__cta">Смотреть прайс <span class="nav-card__arrow">→</span></span>
-      </a>
+  <!-- ГАЛЕРЕЯ -->
+  <section class="section section--dark" id="gallery">
+    <div class="section__head section__head--inverse">
+      <span class="eyebrow">02 / Работы</span>
+      <h2 class="section__title">Покажем<br /><em>в деле</em></h2>
+    </div>
+    <div class="gallery" id="gallery-grid">
+      <!-- наполняется из config.gallery -->
+    </div>
+  </section>
 
-      <a class="nav-card" href="raboty.html">
-        <div class="nav-card__num">02</div>
-        <h3 class="nav-card__title">Работы</h3>
-        <p class="nav-card__lede">Маникюр, ногти, дизайн — что получают наши гости после визита.</p>
-        <span class="nav-card__cta">Посмотреть <span class="nav-card__arrow">→</span></span>
-      </a>
+  <!-- ОТЗЫВЫ -->
+  <section class="section section--paper" id="reviews">
+    <div class="section__head">
+      <span class="eyebrow">03 / Отзывы</span>
+      <h2 class="section__title">Говорят<br /><em>гости</em></h2>
+    </div>
+    <div class="reviews" id="reviews-list">
+      <!-- наполняется из config.reviews -->
+    </div>
+  </section>
 
-      <a class="nav-card" href="otzyvy.html">
-        <div class="nav-card__num">03</div>
-        <h3 class="nav-card__title">Отзывы</h3>
-        <p class="nav-card__lede">Реальные отзывы с Яндекс.Карт — про мастеров, сервис и атмосферу.</p>
-        <span class="nav-card__cta">Читать <span class="nav-card__arrow">→</span></span>
-      </a>
+  <!-- МАСТЕРА -->
+  <section class="section section--paper" id="masters" data-section="masters">
+    <div class="section__head">
+      <span class="eyebrow">04 / Команда</span>
+      <h2 class="section__title">Те, кто<br /><em>работает с тобой</em></h2>
+    </div>
+    <div class="masters" id="masters-list">
+      <!-- наполняется из config.masters -->
+    </div>
+  </section>
 
-      <a class="nav-card" href="mastera.html">
-        <div class="nav-card__num">04</div>
-        <h3 class="nav-card__title">Мастера</h3>
-        <p class="nav-card__lede">Те, кто работает с тобой — кратко о каждом и его направлении.</p>
-        <span class="nav-card__cta">Познакомиться <span class="nav-card__arrow">→</span></span>
-      </a>
 
-      <a class="nav-card" href="kontakty.html">
-        <div class="nav-card__num">05</div>
-        <h3 class="nav-card__title">Контакты</h3>
-        <p class="nav-card__lede">Адрес, телефон, мессенджеры и как добраться. Карта в комплекте.</p>
-        <span class="nav-card__cta">Открыть <span class="nav-card__arrow">→</span></span>
-      </a>
+
+  <!-- КОНТАКТЫ -->
+  <section class="section section--dark section--contacts" id="contacts">
+    <div class="contacts">
+      <div class="contacts__col contacts__col--info">
+        <span class="eyebrow eyebrow--inverse">05 / Контакты</span>
+        <h2 class="section__title section__title--inverse">
+          Заходи<br /><em>в гости</em>
+        </h2>
+
+        <div class="contacts__block">
+          <div class="contacts__label">Адрес</div>
+          <div class="contacts__value" data-bind="address">—</div>
+          <div class="contacts__sub" data-bind="metro">—</div>
+        </div>
+
+        <div class="contacts__block">
+          <div class="contacts__label">Режим работы</div>
+          <ul class="hours" id="hours-list">
+            <!-- наполняется из config.hours -->
+          </ul>
+        </div>
+
+        <div class="contacts__block">
+          <div class="contacts__label">Связь</div>
+          <a class="contacts__phone" data-bind-attr="href:phone_tel">
+            <span data-bind="phone">—</span>
+          </a>
+          <div class="contacts__socials" id="contacts-socials">
+            <!-- наполняется из config.* -->
+          </div>
+        </div>
+      </div>
+
+      <div class="contacts__col contacts__col--map">
+        <div class="map" id="map">
+          <!-- iframe вставляется через script.js, если задан config.map_embed_src -->
+        </div>
+      </div>
     </div>
   </section>
 
@@ -128,7 +170,7 @@
   </footer>
 
   <!-- Плавающая кнопка записи для мобилы -->
-  <a class="fab" href="kontakty.html" aria-label="Записаться">
+  <a class="fab" href="#contacts" aria-label="Записаться">
     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
       <line x1="16" y1="2" x2="16" y2="6"/>
@@ -139,7 +181,7 @@
     <span class="fab__label">Записаться</span>
   </a>
 
-  <script src="config.js?v=5"></script>
-  <script src="script.js?v=2"></script>
+  <script src="config.js?v=4"></script>
+  <script src="script.js?v=1"></script>
 </body>
 </html>
