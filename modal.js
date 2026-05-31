@@ -69,10 +69,32 @@
     // ========== Дата (на 14 дней вперёд, сегодня — только если ещё есть слоты) ==========
     const [workStart, workEnd] = parseHours(cfg.hours);
 
-    function minSlotForToday(buffer = 30) {
-      // Ближайший 30-минутный слот ≥ (сейчас + buffer)
-      const now = new Date();
-      const cur = now.getHours() * 60 + now.getMinutes();
+    // Москва-время «сейчас» в минутах (независимо от таймзоны клиента)
+    function moscowNowMinutes() {
+      const parts = new Intl.DateTimeFormat("en-GB", {
+        timeZone: "Europe/Moscow",
+        hour: "2-digit", minute: "2-digit", hour12: false,
+      }).formatToParts(new Date());
+      const h = +parts.find((p) => p.type === "hour").value;
+      const m = +parts.find((p) => p.type === "minute").value;
+      return h * 60 + m;
+    }
+    // ISO-дата «сегодня» в МСК (YYYY-MM-DD)
+    function moscowTodayISO() {
+      return new Intl.DateTimeFormat("en-CA", {
+        timeZone: "Europe/Moscow",
+        year: "numeric", month: "2-digit", day: "2-digit",
+      }).format(new Date());
+    }
+    // Дата (МСК) + offset дней → ISO + Date для форматирования
+    function moscowDatePlus(offsetDays) {
+      const [y, m, d] = moscowTodayISO().split("-").map(Number);
+      const dt = new Date(Date.UTC(y, m - 1, d + offsetDays));
+      return { iso: `${dt.getUTCFullYear()}-${pad2(dt.getUTCMonth() + 1)}-${pad2(dt.getUTCDate())}`, dt };
+    }
+    function minSlotForToday(buffer = 15) {
+      // Ближайший 30-минутный слот ≥ (МСК сейчас + buffer)
+      const cur = moscowNowMinutes();
       return Math.max(workStart, Math.ceil((cur + buffer) / 30) * 30);
     }
     function isoOf(d) {
@@ -80,18 +102,19 @@
     }
 
     if (dateSel && dateSel.options.length <= 1) {
-      const today = new Date(); today.setHours(0, 0, 0, 0);
-      const fmt = new Intl.DateTimeFormat("ru-RU", { weekday: "short", day: "2-digit", month: "long" });
+      const fmt = new Intl.DateTimeFormat("ru-RU", {
+        timeZone: "Europe/Moscow",
+        weekday: "short", day: "2-digit", month: "long",
+      });
       // Если на сегодня уже не осталось слотов — начинаем с завтра
       const startOffset = (minSlotForToday() <= workEnd - 30) ? 0 : 1;
       for (let i = startOffset; i < startOffset + 14; i++) {
-        const d = new Date(today);
-        d.setDate(today.getDate() + i);
+        const { iso, dt } = moscowDatePlus(i);
         const opt = document.createElement("option");
-        opt.value = isoOf(d);
-        opt.textContent = i === 0 ? `Сегодня · ${fmt.format(d)}`
-                       : i === 1 ? `Завтра · ${fmt.format(d)}`
-                       : fmt.format(d);
+        opt.value = iso;
+        opt.textContent = i === 0 ? `Сегодня · ${fmt.format(dt)}`
+                       : i === 1 ? `Завтра · ${fmt.format(dt)}`
+                       : fmt.format(dt);
         dateSel.appendChild(opt);
       }
     }
@@ -101,7 +124,7 @@
       if (!timeSel) return;
       timeSel.innerHTML = '<option value="" disabled selected hidden style="display:none">— выберите время —</option>';
       if (!dateISO) return;
-      const todayISO = isoOf(new Date());
+      const todayISO = moscowTodayISO();
       const minSlot = (dateISO === todayISO) ? minSlotForToday() : workStart;
       let added = 0;
       for (let m = minSlot; m <= workEnd - 30; m += 30) {
