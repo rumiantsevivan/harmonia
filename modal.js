@@ -40,11 +40,11 @@
 
     function rebuildVariants(key) {
       if (!variantSel) return;
-      variantSel.innerHTML = '<option value="">— выберите вариант —</option>';
+      variantSel.innerHTML = '<option value="" disabled selected hidden>— выберите вариант —</option>';
       const items = groupMap.get(key) || [];
       if (!items.length) {
         variantSel.disabled = true;
-        variantSel.innerHTML = '<option value="">— сначала выберите услугу —</option>';
+        variantSel.innerHTML = '<option value="" disabled selected hidden>— сначала выберите услугу —</option>';
         return;
       }
       items.forEach((it) => {

@@ -1662,3 +1662,67 @@ input[type="time"]:hover::-webkit-calendar-picker-indicator { opacity: 1; }
 @media (max-width: 480px) {
   .field-row { grid-template-columns: 1fr; }
 }
+
+/* ============================================================
+   v2.3 mobile fixes
+   ============================================================ */
+
+/* Безопасная зона iOS (notch) — для шапки и для первой секции */
+.site-header__inner {
+  padding-top: max(14px, env(safe-area-inset-top));
+}
+.home-hero {
+  padding-top: max(clamp(120px, 14vw, 180px), calc(env(safe-area-inset-top) + 80px));
+}
+.page-header {
+  padding-top: max(clamp(48px, 6vw, 80px), calc(env(safe-area-inset-top) + 24px));
+}
+@media (max-width: 600px) {
+  .page-header { padding-top: 88px; }
+}
+
+/* SVG-иконки в "что мы делаем" — единообразно на ПК и мобиле */
+.feature__icon {
+  width: 48px; height: 48px;
+  font-size: 0;
+}
+.feature__icon svg { width: 26px; height: 26px; }
+
+/* Услуги: карточки светлее по умолчанию + без пунктира на фото */
+.svc-group {
+  background: var(--paper);
+  box-shadow: 0 8px 22px -16px color-mix(in srgb, var(--ink) 40%, transparent);
+}
+.svc-group__photo {
+  border: 0;
+  background: var(--paper-soft);
+}
+
+/* Цена крупнее, особенно на мобиле */
+.svc-group__row-price {
+  font-size: clamp(20px, 4vw, 24px);
+  font-weight: 700;
+}
+.svc-group__row-name { font-size: clamp(15px, 3.8vw, 17px); }
+
+/* Превью услуг на главной: дефолтный вид = "поднятый" (был hover) */
+.preview-service {
+  background: var(--paper);
+  box-shadow: 0 10px 28px -18px color-mix(in srgb, var(--ink) 35%, transparent);
+}
+.preview-service:hover {
+  transform: translateY(-3px);
+  background: var(--paper);
+  box-shadow: 0 16px 36px -16px color-mix(in srgb, var(--ink) 45%, transparent);
+}
+
+/* Превью мастеров: лёгкая подсветка карточки даже без hover */
+.preview-master__photo-wrap {
+  box-shadow: 0 8px 22px -16px color-mix(in srgb, var(--ink) 35%, transparent);
+}
+
+/* Если фото в .svc-group__photo нет (placeholder) — без пунктира,
+   просто чистый фон с текстом */
+.svc-group__photo:has(span) {
+  background: color-mix(in srgb, var(--paper) 70%, var(--paper-soft));
+}

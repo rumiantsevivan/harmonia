@@ -82,7 +82,7 @@
   // ---------- SERVICES.HTML: категории → группы-карточки с фото + список ----------
   // Фото подставляются по порядку групп: img/services/svc-01.jpg … svc-19.jpg
   // Если фото не хватает (брови/ресницы/сертификаты) — остаётся placeholder.
-  const SERVICE_PHOTOS_COUNT = 19;
+  const SERVICE_PHOTOS_COUNT = 0;
   function fillServicesTables(cfg) {
     const el = document.getElementById("servicesTables");
     if (!el || !cfg.services || !Array.isArray(cfg.services.tabs)) return;
