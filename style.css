@@ -1015,12 +1015,14 @@ input[type="time"]:hover::-webkit-calendar-picker-indicator { opacity: 1; }
    MULTI-PAGE SHELL (v2) — header / footer / modal / lightbox
    ============================================================ */
 
-/* ===== SITE HEADER ===== */
+/* ===== SITE HEADER =====
+   ВНИМАНИЕ: фон СОЛИДНЫЙ (без backdrop-filter и без полупрозрачности).
+   Иначе на iOS Safari при position:sticky + env(safe-area-inset-top)
+   фильтр рендерится только в исходной высоте шапки, safe-area-падинг
+   становится отдельной зоной, и контент шапки визуально «обрезается». */
 .site-header {
   position: sticky; top: 0; z-index: 100;
-  background: color-mix(in srgb, var(--paper) 92%, transparent);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: var(--paper);
   border-bottom: 1px solid var(--line);
 }
 .site-header__inner {
@@ -1698,9 +1700,9 @@ input[type="time"]:hover::-webkit-calendar-picker-indicator { opacity: 1; }
 }
 .feature__icon svg { width: 26px; height: 26px; }
 
-/* Услуги: карточки розового оттенка (как .feature на главной) + объёмная тень */
+/* Услуги: карточки розового оттенка (как .feature, но чуть светлее) + объёмная тень */
 .svc-group {
-  background: var(--paper-soft);
+  background: color-mix(in srgb, var(--paper-soft) 55%, var(--paper));
   box-shadow:
     0 18px 36px -20px color-mix(in srgb, var(--paper-dark) 55%, transparent),
     0 4px 10px -6px color-mix(in srgb, var(--ink) 18%, transparent);
