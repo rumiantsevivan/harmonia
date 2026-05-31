@@ -1016,14 +1016,16 @@ input[type="time"]:hover::-webkit-calendar-picker-indicator { opacity: 1; }
    ============================================================ */
 
 /* ===== SITE HEADER =====
-   ВНИМАНИЕ: фон СОЛИДНЫЙ (без backdrop-filter и без полупрозрачности).
-   Иначе на iOS Safari при position:sticky + env(safe-area-inset-top)
-   фильтр рендерится только в исходной высоте шапки, safe-area-падинг
-   становится отдельной зоной, и контент шапки визуально «обрезается». */
+   ВНИМАНИЕ: position:fixed (не sticky), как в старом топбаре одностраничника.
+   На iOS Safari sticky + safe-area создаёт «слипшийся» compositor-слой,
+   который пересоздаётся при reflow (открытии бургера) и снова ломается
+   при закрытии — отсюда визуальный «обрез» контента шапки. fixed этого
+   бага не имеет. Содержимое страниц компенсирует overlay через padding-top. */
 .site-header {
-  position: sticky; top: 0; z-index: 100;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   background: var(--paper);
   border-bottom: 1px solid var(--line);
+  padding-top: env(safe-area-inset-top);
 }
 .site-header__inner {
   max-width: var(--max-w); margin: 0 auto;
@@ -1679,18 +1681,12 @@ input[type="time"]:hover::-webkit-calendar-picker-indicator { opacity: 1; }
    ============================================================ */
 
 /* Безопасная зона iOS (notch) — для шапки и для первой секции */
-/* iOS notch: фон шапки растёт вверх на высоту safe-area, прикрывает чёлку */
-.site-header {
-  padding-top: env(safe-area-inset-top);
-}
+/* Компенсация overlay-шапки (position:fixed): отступ сверху ≥ высоты шапки */
 .home-hero {
   padding-top: max(clamp(120px, 14vw, 180px), calc(env(safe-area-inset-top) + 80px));
 }
 .page-header {
-  padding-top: max(clamp(48px, 6vw, 80px), calc(env(safe-area-inset-top) + 24px));
-}
-@media (max-width: 600px) {
-  .page-header { padding-top: calc(env(safe-area-inset-top) + 64px); }
+  padding-top: calc(env(safe-area-inset-top) + clamp(96px, 12vw, 128px));
 }
 
 /* SVG-иконки в "что мы делаем" — единообразно на ПК и мобиле */
