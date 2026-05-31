@@ -66,16 +66,29 @@
       });
     }
 
-    // ========== Дата (на 14 дней вперёд) ==========
+    // ========== Дата (на 14 дней вперёд, сегодня — только если ещё есть слоты) ==========
+    const [workStart, workEnd] = parseHours(cfg.hours);
+
+    function minSlotForToday(buffer = 30) {
+      // Ближайший 30-минутный слот ≥ (сейчас + buffer)
+      const now = new Date();
+      const cur = now.getHours() * 60 + now.getMinutes();
+      return Math.max(workStart, Math.ceil((cur + buffer) / 30) * 30);
+    }
+    function isoOf(d) {
+      return `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`;
+    }
+
     if (dateSel && dateSel.options.length <= 1) {
       const today = new Date(); today.setHours(0, 0, 0, 0);
       const fmt = new Intl.DateTimeFormat("ru-RU", { weekday: "short", day: "2-digit", month: "long" });
-      for (let i = 0; i < 14; i++) {
+      // Если на сегодня уже не осталось слотов — начинаем с завтра
+      const startOffset = (minSlotForToday() <= workEnd - 30) ? 0 : 1;
+      for (let i = startOffset; i < startOffset + 14; i++) {
         const d = new Date(today);
         d.setDate(today.getDate() + i);
-        const iso = `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`;
         const opt = document.createElement("option");
-        opt.value = iso;
+        opt.value = isoOf(d);
         opt.textContent = i === 0 ? `Сегодня · ${fmt.format(d)}`
                        : i === 1 ? `Завтра · ${fmt.format(d)}`
                        : fmt.format(d);
@@ -83,18 +96,28 @@
       }
     }
 
-    // ========== Время (слоты по 30 мин в рабочем диапазоне) ==========
-    if (timeSel && timeSel.options.length <= 1) {
-      const [start, end] = parseHours(cfg.hours);
-      for (let m = start; m <= end - 30; m += 30) {
+    // ========== Время (слоты по 30 мин, фильтр на «сегодня + сейчас») ==========
+    function rebuildTimes(dateISO) {
+      if (!timeSel) return;
+      timeSel.innerHTML = '<option value="" disabled selected hidden style="display:none">— выберите время —</option>';
+      if (!dateISO) return;
+      const todayISO = isoOf(new Date());
+      const minSlot = (dateISO === todayISO) ? minSlotForToday() : workStart;
+      let added = 0;
+      for (let m = minSlot; m <= workEnd - 30; m += 30) {
         const h = Math.floor(m / 60), mm = m % 60;
         const txt = `${pad2(h)}:${pad2(mm)}`;
         const opt = document.createElement("option");
         opt.value = txt;
         opt.textContent = txt;
         timeSel.appendChild(opt);
+        added++;
+      }
+      if (added === 0) {
+        timeSel.innerHTML = '<option value="" disabled selected hidden style="display:none">— на эту дату запись закрыта —</option>';
       }
     }
+    dateSel?.addEventListener("change", () => rebuildTimes(dateSel.value));
 
     // ========== Открытие / закрытие ==========
     function open(prefillService, prefillMaster) {
@@ -129,6 +152,7 @@
         }
         if (form) form.reset();
         rebuildVariants("");
+        rebuildTimes("");
         modal.querySelectorAll(".field--invalid").forEach((el) => el.classList.remove("field--invalid"));
         modal.querySelectorAll(".field__error").forEach((el) => (el.textContent = ""));
       }, 250);

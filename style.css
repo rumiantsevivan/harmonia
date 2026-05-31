@@ -165,22 +165,23 @@ button { font: inherit; cursor: pointer; }
 }
 .hero__trust {
   display: flex; flex-wrap: wrap; align-items: center;
-  gap: 14px;
+  gap: 18px;
   margin: 0 0 28px;
-  font-size: 13px;
-  letter-spacing: .04em;
+  font-size: 15px;
+  letter-spacing: .02em;
   color: color-mix(in srgb, var(--paper) 80%, transparent);
   animation: fadeUp .9s .5s both;
 }
 .hero__trust:empty { display: none; }
 .hero__trust-rating {
-  display: inline-flex; align-items: center; gap: 7px;
+  display: inline-flex; align-items: baseline; gap: 10px;
   color: var(--paper);
 }
-.hero__trust-star { color: #F5C76E; font-size: 15px; line-height: 1; }
+.hero__trust-star { color: #F5C76E; font-size: 26px; line-height: 1; align-self: center; }
 .hero__trust-rating strong {
-  font-family: var(--display); font-weight: 500;
-  font-size: 16px; letter-spacing: -.01em;
+  font-family: var(--display); font-weight: 600;
+  font-size: 30px; line-height: 1; letter-spacing: -.01em;
+  color: var(--paper);
 }
 .hero__trust-sep {
   color: color-mix(in srgb, var(--accent) 75%, var(--paper));
