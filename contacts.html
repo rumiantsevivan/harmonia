@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Контакты и как добраться — Гармония</title>
+  <meta name="description" content="Адрес, телефон, мессенджеры, режим работы и карта — студия Гармония у м. Преображенская площадь." />
+  <meta name="theme-color" content="#FAEFF2" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Контакты — Гармония" />
+  <meta property="og:description" content="Адрес, телефон, мессенджеры — как с нами связаться." />
+  <meta property="og:url" content="https://rumiantsevivan.github.io/harmonia/contacts.html" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' x='5' fill='%235DAEA8'>✦</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Marck+Script&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=8" />
+</head>
+<body data-page="contacts">
+
+  <div data-include="header"></div>
+
+  <header class="page-header">
+    <div class="page-header__inner">
+      <span class="page-header__crumb">04 / Контакты</span>
+      <h1 class="page-header__title">Заходи<br /><em>в гости</em></h1>
+      <p class="page-header__lede">
+        Преображенская улица, 5/7 — рядом с выходом из метро.
+        Запись по звонку, в мессенджерах или через форму.
+      </p>
+    </div>
+  </header>
+
+  <section class="home-section home-section--paper">
+    <div class="contacts-page">
+      <div class="contacts-page__map" id="contactsMap"><!-- iframe --></div>
+
+      <div class="contacts-page__info">
+        <div class="contacts-page__block">
+          <div class="contacts-page__label">Адрес</div>
+          <div class="contacts-page__value" data-bind="address">—</div>
+          <div class="contacts-page__sub" data-bind="metro">—</div>
+        </div>
+
+        <div class="contacts-page__block">
+          <div class="contacts-page__label">Связь</div>
+          <a class="contacts-page__phone" data-bind-attr="href:phone_tel">
+            <span data-bind="phone">—</span>
+          </a>
+          <div class="contacts-page__quick" id="contactsQuick" style="margin-top: 16px;"><!-- fill --></div>
+        </div>
+
+        <div class="contacts-page__block">
+          <div class="contacts-page__label">Режим работы</div>
+          <ul class="contacts-page__hours" id="homeHoursList"><!-- fill --></ul>
+        </div>
+
+        <div>
+          <button class="btn btn--solid btn--block" type="button" data-modal-open="booking">Записаться</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div data-include="footer"></div>
+  <div data-include="modal-booking"></div>
+
+  <script src="config.js?v=7"></script>
+  <script src="include.js?v=1"></script>
+  <script src="page-fills.js?v=2"></script>
+  <script src="modal.js?v=2"></script>
+  <script src="script.js?v=2"></script>
+</body>
+</html>

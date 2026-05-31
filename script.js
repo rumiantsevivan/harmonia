@@ -7,7 +7,7 @@
  * data-bind-style="prop:ключ" — установить инлайн-стиль
  * data-bind-show="ключ"      — скрыть элемент, если значение пустое
  */
-(function () {
+function runApp() {
   const cfg = window.SITE_CONFIG || {};
 
   // === 1) CSS-переменные из палитры ===
@@ -280,14 +280,16 @@
   // === 15b) ФОРМА ЗАПИСИ =================================
   setupBookingForm(cfg);
 
-  // === 16) Тень шапки при скролле ===
+  // === 16) Тень шапки при скролле (только если есть старый id="topbar") ===
   const topbar = document.getElementById("topbar");
-  const onScroll = () => {
-    if (window.scrollY > 24) topbar.classList.add("is-scrolled");
-    else topbar.classList.remove("is-scrolled");
-  };
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
+  if (topbar) {
+    const onScroll = () => {
+      if (window.scrollY > 24) topbar.classList.add("is-scrolled");
+      else topbar.classList.remove("is-scrolled");
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
 
   // ---- утилиты ----
   function escapeHtml(s) {
@@ -547,4 +549,5 @@
       return dt.toLocaleDateString("ru-RU", { day: "2-digit", month: "long", weekday: "short" });
     } catch { return iso; }
   }
-})();
+}
+window.addEventListener("partials:loaded", runApp);

@@ -3,185 +3,170 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title data-bind="title">Гармония · студия красоты и эпиляции у Преображенской площади</title>
-  <meta name="description" content="" data-bind="meta_description" />
-  <meta name="theme-color" content="#A8607A" />
+  <title>Гармония — студия красоты и эпиляции у Преображенской площади</title>
+  <meta name="description" content="Гармония — студия красоты и эпиляции у м. Преображенская площадь. Электроэпиляция по минутам, лазер, шугаринг, маникюр, педикюр." />
+  <meta name="theme-color" content="#FAEFF2" />
 
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Гармония — студия красоты и эпиляции" />
+  <meta property="og:description" content="Электроэпиляция по минутам, лазер, шугаринг, маникюр, педикюр. У м. Преображенская площадь." />
+  <meta property="og:url" content="https://rumiantsevivan.github.io/harmonia/" />
+  <!-- TODO: og:image от клиента -->
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' x='5' fill='%235DAEA8'>✦</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Marck+Script&family=Inter:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="style.css?v=5" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Marck+Script&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=8" />
 </head>
-<body>
-  <!-- Шапка (мини, прилипает к верху) -->
-  <header class="topbar" id="topbar">
-    <a class="topbar__brand" href="#top">
-      <span class="topbar__mark">✦</span>
-      <span data-bind="name">—</span>
-    </a>
-    <nav class="topbar__nav">
-      <a href="#services">Услуги</a>
-      <a href="#gallery">Работы</a>
-      <a href="#reviews">Отзывы</a>
-      <a href="#masters">Мастера</a>
-      <a href="#contacts">Контакты</a>
-    </nav>
-    <a class="topbar__cta" href="#contacts">Записаться</a>
-  </header>
+<body data-page="home">
+
+  <div data-include="header"></div>
 
   <!-- HERO -->
-  <section class="hero" id="top">
-    <div class="hero__media" data-bind-style="backgroundImage:hero_image_css"></div>
-    <div class="hero__veil"></div>
-    <div class="hero__inner">
-      <div class="hero__est">
-        ESTD <span data-bind="est_year">—</span>
-      </div>
-      <h1 class="hero__title">
-        <span class="hero__title-name" data-bind="name">—</span>
-      </h1>
-      <p class="hero__tagline" data-bind="tagline">—</p>
-      <div class="hero__trust" id="hero-trust"><!-- наполняется из config.trust --></div>
-      <p class="hero__offer" data-bind="offer">—</p>
-      <div class="hero__cta-row">
-        <a class="btn btn--solid btn--with-arrow" href="#contacts">
-          <span>Записаться</span>
-          <svg class="btn__arrow" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-        <a class="btn btn--ghost btn--with-icon" data-bind-attr="href:phone_tel">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          <span data-bind="phone">—</span>
-        </a>
-      </div>
-      <div class="hero__address">
-        <span data-bind="address_short">—</span>
-        <span class="dot">·</span>
-        <span data-bind="metro">—</span>
+  <section class="home-hero" id="top">
+    <div class="home-hero__media" data-bind-style="backgroundImage:hero_image_css"></div>
+    <div class="home-hero__veil"></div>
+    <div class="home-hero__inner">
+      <span class="home-hero__crumb">ESTD <span data-bind="est_year">—</span></span>
+      <h1 class="home-hero__title"><span data-bind="name">Гармония</span></h1>
+      <p class="home-hero__tagline" data-bind="tagline">Студия красоты и эпиляции у Преображенской площади</p>
+      <div class="home-hero__cta">
+        <button class="btn btn--solid" type="button" data-modal-open="booking">
+          Записаться
+        </button>
       </div>
     </div>
-    <div class="hero__scroll">Листайте вниз ↓</div>
   </section>
 
-  <!-- УСЛУГИ -->
-  <section class="section section--paper" id="services">
-    <div class="section__head">
-      <span class="eyebrow">01 / Услуги</span>
-      <h2 class="section__title">Прайс<br /><em>без сюрпризов</em></h2>
-      <p class="section__lede">
-        Фиксированные цены, никаких «допов» в кассе. Что в списке — то и платишь.
+  <!-- ПРЕИМУЩЕСТВА -->
+  <section class="home-section home-section--paper">
+    <div class="home-section__head">
+      <span class="home-section__crumb">Что мы делаем</span>
+      <h2 class="home-section__title">Уход<br /><em>по любви</em></h2>
+      <p class="home-section__lede">
+        Электроэпиляция, лазер, шугаринг, маникюр и педикюр —
+        с понятными ценами и без давления на касса.
       </p>
     </div>
-    <div class="services-root" id="services-list">
-      <!-- наполняется из config.services -->
+    <div class="features">
+      <article class="feature">
+        <div class="feature__icon">⏱</div>
+        <h3 class="feature__title">Платишь за минуты</h3>
+        <p class="feature__lede">Электроэпиляция тарифицируется поминутно — ни одной лишней копейки за «остановки».</p>
+      </article>
+      <article class="feature">
+        <div class="feature__icon">✦</div>
+        <h3 class="feature__title">Мастера обучают других</h3>
+        <p class="feature__lede">У нас не только записываются, к нам приезжают учиться. 96% «Атмосфера» на Яндексе.</p>
+      </article>
+      <article class="feature">
+        <div class="feature__icon">⊕</div>
+        <h3 class="feature__title">Полный спектр</h3>
+        <p class="feature__lede">От лица и бороды до маникюра и сертификата в подарок — всё в одной студии.</p>
+      </article>
+      <article class="feature">
+        <div class="feature__icon">⌖</div>
+        <h3 class="feature__title">3 минуты от метро</h3>
+        <p class="feature__lede">Преображенская ул., 5/7 — рядом с выходом м. Преображенская площадь.</p>
+      </article>
     </div>
   </section>
 
-  <!-- ГАЛЕРЕЯ -->
-  <section class="section section--dark" id="gallery">
-    <div class="section__head section__head--inverse">
-      <span class="eyebrow">02 / Работы</span>
-      <h2 class="section__title">Покажем<br /><em>в деле</em></h2>
+  <!-- ПРЕВЬЮ УСЛУГ -->
+  <section class="home-section home-section--soft">
+    <div class="home-section__head">
+      <span class="home-section__crumb">01 / Услуги</span>
+      <h2 class="home-section__title">Прайс<br /><em>без сюрпризов</em></h2>
+      <p class="home-section__lede">
+        Цены закреплены — никаких «допов» в кассе. Полный список —
+        в разделе услуг.
+      </p>
     </div>
-    <div class="gallery" id="gallery-grid">
-      <!-- наполняется из config.gallery -->
-    </div>
-  </section>
-
-  <!-- ОТЗЫВЫ -->
-  <section class="section section--paper" id="reviews">
-    <div class="section__head">
-      <span class="eyebrow">03 / Отзывы</span>
-      <h2 class="section__title">Говорят<br /><em>гости</em></h2>
-    </div>
-    <div class="reviews" id="reviews-list">
-      <!-- наполняется из config.reviews -->
+    <div class="preview-services" id="servicesPreview"><!-- fill --></div>
+    <div class="preview-grid-foot">
+      <a class="btn btn--ghost-dark" href="services.html">Все услуги →</a>
     </div>
   </section>
 
-  <!-- МАСТЕРА -->
-  <section class="section section--paper" id="masters" data-section="masters">
-    <div class="section__head">
-      <span class="eyebrow">04 / Команда</span>
-      <h2 class="section__title">Те, кто<br /><em>работает с тобой</em></h2>
+  <!-- ПРЕВЬЮ МАСТЕРОВ -->
+  <section class="home-section home-section--paper">
+    <div class="home-section__head">
+      <span class="home-section__crumb">02 / Мастера</span>
+      <h2 class="home-section__title">Те, кто<br /><em>работает с тобой</em></h2>
+      <p class="home-section__lede">
+        Постоянная команда — у каждого мастера своя специализация.
+      </p>
     </div>
-    <div class="masters" id="masters-list">
-      <!-- наполняется из config.masters -->
+    <div class="preview-masters" id="mastersPreview"><!-- fill --></div>
+    <div class="preview-grid-foot">
+      <a class="btn btn--ghost-dark" href="masters.html">Все мастера →</a>
     </div>
   </section>
 
+  <!-- ПРЕВЬЮ РАБОТ -->
+  <section class="home-section home-section--soft">
+    <div class="home-section__head">
+      <span class="home-section__crumb">03 / Работы</span>
+      <h2 class="home-section__title">Покажем<br /><em>в деле</em></h2>
+    </div>
+    <div class="preview-gallery" id="galleryPreview"><!-- fill --></div>
+    <div class="preview-grid-foot">
+      <a class="btn btn--ghost-dark" href="gallery.html">Смотреть все →</a>
+    </div>
+  </section>
 
+  <!-- ПРЕВЬЮ ОТЗЫВОВ -->
+  <section class="home-section home-section--paper">
+    <div class="home-section__head">
+      <span class="home-section__crumb">04 / Отзывы</span>
+      <h2 class="home-section__title">Говорят<br /><em>гости</em></h2>
+      <p class="home-section__lede">
+        Реальные отзывы с Яндекс.Карт.
+      </p>
+    </div>
+    <div class="reviews" id="reviewsPreview"><!-- fill --></div>
+  </section>
 
-  <!-- КОНТАКТЫ -->
-  <section class="section section--dark section--contacts" id="contacts">
-    <div class="contacts">
-      <div class="contacts__col contacts__col--info">
-        <span class="eyebrow eyebrow--inverse">05 / Контакты</span>
-        <h2 class="section__title section__title--inverse">
-          Заходи<br /><em>в гости</em>
-        </h2>
-
-        <div class="contacts__block">
-          <div class="contacts__label">Адрес</div>
-          <div class="contacts__value" data-bind="address">—</div>
-          <div class="contacts__sub" data-bind="metro">—</div>
+  <!-- КОНТАКТНЫЙ БЛОК -->
+  <section class="home-section home-section--soft" id="contacts-home">
+    <div class="home-section__head">
+      <span class="home-section__crumb">05 / Контакты</span>
+      <h2 class="home-section__title">Заходи<br /><em>в гости</em></h2>
+    </div>
+    <div class="home-contacts">
+      <div class="home-contacts__map" id="homeMap"><!-- iframe --></div>
+      <div class="home-contacts__info">
+        <div class="contacts-page__block">
+          <div class="contacts-page__label">Адрес</div>
+          <div class="contacts-page__value" data-bind="address">—</div>
+          <div class="contacts-page__sub" data-bind="metro">—</div>
         </div>
-
-        <div class="contacts__block">
-          <div class="contacts__label">Режим работы</div>
-          <ul class="hours" id="hours-list">
-            <!-- наполняется из config.hours -->
-          </ul>
-        </div>
-
-        <div class="contacts__block">
-          <div class="contacts__label">Связь</div>
-          <a class="contacts__phone" data-bind-attr="href:phone_tel">
+        <div class="contacts-page__block">
+          <div class="contacts-page__label">Связь</div>
+          <a class="contacts-page__phone" data-bind-attr="href:phone_tel">
             <span data-bind="phone">—</span>
           </a>
-          <div class="contacts__socials" id="contacts-socials">
-            <!-- наполняется из config.* -->
-          </div>
         </div>
-      </div>
-
-      <div class="contacts__col contacts__col--map">
-        <div class="map" id="map">
-          <!-- iframe вставляется через script.js, если задан config.map_embed_src -->
+        <div class="contacts-page__block">
+          <div class="contacts-page__label">Режим работы</div>
+          <ul class="contacts-page__hours" id="homeHoursList"><!-- fill --></ul>
+        </div>
+        <div>
+          <button class="btn btn--solid" type="button" data-modal-open="booking">Записаться</button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ФУТЕР -->
-  <footer class="footer">
-    <div class="footer__brand">
-      <span class="footer__mark">✦</span>
-      <span data-bind="name">—</span>
-    </div>
-    <div class="footer__est">
-      С <span data-bind="est_year">—</span> года · Москва
-    </div>
-    <div class="footer__signature">
-      Сайт сделан под заказ · <span class="footer__year" id="footer-year"></span>
-    </div>
-  </footer>
+  <div data-include="footer"></div>
+  <div data-include="modal-booking"></div>
 
-  <!-- Плавающая кнопка записи для мобилы -->
-  <a class="fab" href="#contacts" aria-label="Записаться">
-    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-      <line x1="16" y1="2" x2="16" y2="6"/>
-      <line x1="8" y1="2" x2="8" y2="6"/>
-      <line x1="3" y1="10" x2="21" y2="10"/>
-      <polyline points="9 16 11 18 15 14"/>
-    </svg>
-    <span class="fab__label">Записаться</span>
-  </a>
-
-  <script src="config.js?v=4"></script>
-  <script src="script.js?v=1"></script>
+  <script src="config.js?v=7"></script>
+  <script src="include.js?v=1"></script>
+  <script src="page-fills.js?v=2"></script>
+  <script src="modal.js?v=2"></script>
+  <script src="script.js?v=2"></script>
 </body>
 </html>

@@ -1,0 +1,106 @@
+<div class="modal" id="bookingModal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="bookingModalTitle">
+  <div class="modal__overlay" data-modal-close></div>
+  <div class="modal__content" role="document">
+    <button class="modal__close" type="button" data-modal-close aria-label="Закрыть">×</button>
+
+    <div class="modal__form-wrap" id="bookingFormWrap">
+      <h2 id="bookingModalTitle" class="modal__title">Запись<br /><em>в студию</em></h2>
+      <p class="modal__lede">Оставьте контакты — перезвоним и подтвердим время.</p>
+
+      <form class="modal__form" id="bookingForm" novalidate>
+        <div class="field">
+          <label class="field__label" for="b-name">Имя</label>
+          <input class="field__input" type="text" id="b-name" name="name" required minlength="2" autocomplete="given-name" placeholder="Как вас зовут" />
+          <div class="field__error" data-error-for="name"></div>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="b-phone">Телефон</label>
+          <input class="field__input" type="tel" id="b-phone" name="phone" required inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" />
+          <div class="field__error" data-error-for="phone"></div>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="b-service">Услуга</label>
+          <div class="field__select-wrap">
+            <select class="field__input field__select" id="b-service" name="service" required>
+              <option value="">— выбери услугу —</option>
+            </select>
+            <svg class="field__select-caret" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="field__error" data-error-for="service"></div>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="b-variant">Длительность / вариант</label>
+          <div class="field__select-wrap">
+            <select class="field__input field__select" id="b-variant" name="variant" required disabled>
+              <option value="">— сначала выберите услугу —</option>
+            </select>
+            <svg class="field__select-caret" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="field__error" data-error-for="variant"></div>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="b-master">
+            Мастер <span class="field__opt">— можно не выбирать</span>
+          </label>
+          <div class="field__select-wrap">
+            <select class="field__input field__select" id="b-master" name="master">
+              <option value="">Любой свободный</option>
+            </select>
+            <svg class="field__select-caret" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label class="field__label" for="b-date">Дата</label>
+            <div class="field__select-wrap">
+              <select class="field__input field__select" id="b-date" name="date" required>
+                <option value="">— выберите дату —</option>
+              </select>
+              <svg class="field__select-caret" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+            <div class="field__error" data-error-for="date"></div>
+          </div>
+          <div class="field">
+            <label class="field__label" for="b-time">Время</label>
+            <div class="field__select-wrap">
+              <select class="field__input field__select" id="b-time" name="time" required>
+                <option value="">— выберите время —</option>
+              </select>
+              <svg class="field__select-caret" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+            <div class="field__error" data-error-for="time"></div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="b-note">
+            Комментарий <span class="field__opt">— по желанию</span>
+          </label>
+          <textarea class="field__input field__textarea" id="b-note" name="note" rows="3" placeholder="Особые пожелания"></textarea>
+        </div>
+
+        <button class="btn btn--solid btn--block" type="submit" id="bookingSubmit">
+          <span class="btn__label">Записаться</span>
+        </button>
+
+        <p class="modal__legal">
+          Нажимая «Записаться», вы соглашаетесь на обработку персональных данных.
+        </p>
+      </form>
+    </div>
+
+    <div class="modal__success" id="bookingSuccess" hidden>
+      <span class="modal__success-mark">✦</span>
+      <h3 class="modal__success-title">Спасибо,<br /><em>мы свяжемся с вами</em></h3>
+      <p class="modal__success-lede">
+        В течение часа перезвоним для подтверждения времени и мастера.
+      </p>
+      <button type="button" class="btn btn--ghost-dark" data-modal-close>Закрыть</button>
+    </div>
+  </div>
+</div>
