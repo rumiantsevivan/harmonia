@@ -36,7 +36,8 @@ function runApp() {
     title: cfg.name ? `${cfg.name} · ${cfg.tagline || "Барбершоп"}` : "Барбершоп",
     meta_description: cfg.offer || "",
   };
-  const value = (key) => (key in derived ? derived[key] : cfg[key]);
+  const getNested = (o, p) => p.split(".").reduce((a, k) => (a == null ? undefined : a[k]), o);
+  const value = (key) => (key in derived ? derived[key] : getNested(cfg, key));
 
   // === 3) Простые подстановки текста ===
   document.querySelectorAll("[data-bind]").forEach((el) => {

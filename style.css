@@ -1215,6 +1215,18 @@ input[type="time"]:hover::-webkit-calendar-picker-indicator { opacity: 1; }
 .field__error { font-size: 12px; color: #C0392B; margin-top: 4px; min-height: 14px; }
 .field--invalid .field__input { border-color: #C0392B; box-shadow: 0 0 0 3px rgba(192,57,43,.12); }
 
+/* Заблокированный селект (например, «Длительность» пока услуга не выбрана) —
+   явно серый и на ПК, и на мобиле */
+.field__input:disabled,
+.field__select:disabled {
+  background: color-mix(in srgb, var(--paper-soft) 35%, var(--paper));
+  color: color-mix(in srgb, var(--muted) 70%, var(--ink-soft));
+  border-color: color-mix(in srgb, var(--line) 70%, transparent);
+  cursor: not-allowed;
+  opacity: .75;
+}
+.field__select-wrap:has(.field__select:disabled) .field__select-caret { opacity: .35; }
+
 .modal__success { text-align: center; padding: 12px 0; }
 .modal__success-mark {
   display: inline-block; font-size: 48px; color: var(--accent);

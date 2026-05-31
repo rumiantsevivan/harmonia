@@ -58,7 +58,7 @@
               <!-- TODO: опыт и био от клиента -->
               Опыт работы, специализация и история — уточняются.
             </p>
-            <button class="btn btn--solid btn--sm" type="button" data-modal-open="booking" data-prefill="${esc(m.name || "")}">Записаться к мастеру</button>
+            <button class="btn btn--solid btn--sm" type="button" data-modal-open="booking" data-prefill-master="${esc(m.name || "")}">Записаться к мастеру</button>
           </div>
         </article>`
       )

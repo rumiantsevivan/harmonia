@@ -40,11 +40,11 @@
 
     function rebuildVariants(key) {
       if (!variantSel) return;
-      variantSel.innerHTML = '<option value="" disabled selected hidden>— выберите вариант —</option>';
+      variantSel.innerHTML = '<option value="" disabled selected hidden style="display:none">— выберите вариант —</option>';
       const items = groupMap.get(key) || [];
       if (!items.length) {
         variantSel.disabled = true;
-        variantSel.innerHTML = '<option value="" disabled selected hidden>— сначала выберите услугу —</option>';
+        variantSel.innerHTML = '<option value="" disabled selected hidden style="display:none">— сначала выберите услугу —</option>';
         return;
       }
       items.forEach((it) => {
@@ -97,7 +97,7 @@
     }
 
     // ========== Открытие / закрытие ==========
-    function open(prefillService) {
+    function open(prefillService, prefillMaster) {
       modal.hidden = false;
       modal.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
@@ -109,6 +109,11 @@
           serviceSel.value = opt.value;
           rebuildVariants(serviceSel.value);
         }
+      }
+      // Префилл мастера, если кнопка пришла с data-prefill-master
+      if (prefillMaster && masterSel) {
+        const opt = [...masterSel.options].find((o) => o.value === prefillMaster);
+        if (opt) masterSel.value = opt.value;
       }
       setTimeout(() => document.getElementById("b-name")?.focus(), 200);
     }
@@ -133,7 +138,7 @@
       const trig = e.target.closest("[data-modal-open='booking']");
       if (trig) {
         e.preventDefault();
-        open(trig.dataset.prefillService || null);
+        open(trig.dataset.prefillService || null, trig.dataset.prefillMaster || null);
         return;
       }
       if (e.target.closest("[data-modal-close]")) close();
