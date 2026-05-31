@@ -1067,11 +1067,16 @@ input[type="time"]:hover::-webkit-calendar-picker-indicator { opacity: 1; }
   .site-header__inner { gap: 12px; padding: 10px 16px; }
   .site-header__brand { font-size: 18px; }
   .site-header__nav {
-    position: fixed; inset: 60px 0 auto 0;
+    position: fixed;
+    /* привязка точно к низу шапки: safe-area + высота __inner на мобиле (~50px) */
+    top: calc(env(safe-area-inset-top) + 50px);
+    left: 0; right: 0; bottom: auto;
     background: var(--paper); border-bottom: 1px solid var(--line);
     flex-direction: column; gap: 0;
     padding: 8px var(--section-px) 20px;
-    transform: translateY(-110%);
+    /* увод НАД viewport с запасом, чтобы при закрытии полностью спрятаться
+       (учитываем и safe-area, и собственную высоту меню) */
+    transform: translateY(calc(-100% - env(safe-area-inset-top) - 60px));
     transition: transform .25s;
   }
   .site-header__nav.is-open { transform: translateY(0); }
