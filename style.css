@@ -37,8 +37,9 @@ body {
   font-size: 17px;
   line-height: 1.55;
   color: var(--ink);
-  /* Тёмный фон под всем сайтом — чтобы iOS safe-area сверху/снизу не была белой */
-  background: var(--paper-dark);
+  /* Тёмный фон под всем сайтом — чтобы iOS safe-area снизу сливалась с футером.
+     Сверху чёлку накрывает fixed-шапка (paper), так что body-фон там не виден. */
+  background: var(--ink);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
