@@ -1597,7 +1597,10 @@ input[type="time"]:hover::-webkit-calendar-picker-indicator { opacity: 1; }
   line-height: 1; margin: 0; letter-spacing: -.01em;
 }
 .svc-cat__sub { font-family: var(--script); font-size: clamp(20px, 2.2vw, 28px); color: var(--accent); }
-.svc-cat__groups { display: grid; grid-template-columns: 1fr; gap: 22px; }
+.svc-cat__groups { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+@media (max-width: 900px) {
+  .svc-cat__groups { grid-template-columns: 1fr; }
+}
 
 .svc-group {
   display: grid; grid-template-columns: 260px 1fr;
