@@ -80,14 +80,19 @@
   }
 
   // ---------- SERVICES.HTML: категории → группы-карточки с фото + список ----------
+  // Фото подставляются по порядку групп: img/services/svc-01.jpg … svc-19.jpg
+  // Если фото не хватает (брови/ресницы/сертификаты) — остаётся placeholder.
+  const SERVICE_PHOTOS_COUNT = 19;
   function fillServicesTables(cfg) {
     const el = document.getElementById("servicesTables");
     if (!el || !cfg.services || !Array.isArray(cfg.services.tabs)) return;
 
+    let groupIdx = 0;
     el.innerHTML = cfg.services.tabs
       .map((tab) => {
         const groups = (tab.groups || [])
           .map((g) => {
+            groupIdx++;
             const items = (g.items || [])
               .map((it) => {
                 const note = it.note ? `<div class="svc-group__row-note">${esc(it.note)}</div>` : "";
@@ -99,12 +104,15 @@
               .join("");
             const sub = g.subtitle ? `<p class="svc-group__sub">${esc(g.subtitle)}</p>` : "";
             const fullName = `${tab.name} · ${g.title || ""}`;
+
+            const pad = String(groupIdx).padStart(2, "0");
+            const photoHTML = groupIdx <= SERVICE_PHOTOS_COUNT
+              ? `<img src="img/services/svc-${pad}.jpg" alt="${esc(g.title || "")}" loading="lazy" />`
+              : `<span>Фото</span>`;
+
             return `
               <article class="svc-group" id="grp-${slug(fullName)}">
-                <div class="svc-group__photo">
-                  <!-- TODO: фото зоны от клиента -->
-                  <span>Фото</span>
-                </div>
+                <div class="svc-group__photo">${photoHTML}</div>
                 <div class="svc-group__body">
                   <h3 class="svc-group__title">${esc(g.title || "")}</h3>
                   ${sub}
