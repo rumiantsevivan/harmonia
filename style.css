@@ -1646,6 +1646,9 @@ input[type="time"]:hover::-webkit-calendar-picker-indicator { opacity: 1; }
 }
 .svc-group__cta { margin-top: 18px; }
 
+/* Группа без фото — одна колонка, контент во всю ширину */
+.svc-group--nopic { grid-template-columns: 1fr; }
+
 @media (max-width: 700px) {
   .svc-group { grid-template-columns: 1fr; gap: 18px; }
   .svc-group__photo { aspect-ratio: 16/9; max-height: 200px; }

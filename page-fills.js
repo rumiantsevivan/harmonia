@@ -106,13 +106,13 @@
             const fullName = `${tab.name} · ${g.title || ""}`;
 
             const pad = String(groupIdx).padStart(2, "0");
-            const photoHTML = groupIdx <= SERVICE_PHOTOS_COUNT
-              ? `<img src="img/services/svc-${pad}.jpg" alt="${esc(g.title || "")}" loading="lazy" />`
-              : `<span>Фото</span>`;
+            const photoBlock = groupIdx <= SERVICE_PHOTOS_COUNT
+              ? `<div class="svc-group__photo"><img src="img/services/svc-${pad}.jpg" alt="${esc(g.title || "")}" loading="lazy" /></div>`
+              : ``;
 
             return `
-              <article class="svc-group" id="grp-${slug(fullName)}">
-                <div class="svc-group__photo">${photoHTML}</div>
+              <article class="svc-group${photoBlock ? "" : " svc-group--nopic"}" id="grp-${slug(fullName)}">
+                ${photoBlock}
                 <div class="svc-group__body">
                   <h3 class="svc-group__title">${esc(g.title || "")}</h3>
                   ${sub}
