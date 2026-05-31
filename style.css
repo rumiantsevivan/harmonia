@@ -295,6 +295,10 @@ button { font: inherit; cursor: pointer; }
 }
 .section--paper { background: var(--paper); color: var(--ink); }
 .section--dark { background: var(--paper-dark); color: var(--paper); }
+/* Под-страницы без hero: первая секция отступает под фикс-топбар */
+body.page-sub .section:first-of-type { padding-top: calc(var(--section-py) + 60px); }
+/* Подсветка текущей страницы в навигации */
+.topbar__nav a.is-active { color: var(--accent); font-weight: 600; }
 .section__head { max-width: var(--max-w); margin: 0 auto clamp(40px, 5vw, 72px); }
 .section__head--inverse { color: var(--paper); }
 .eyebrow {
@@ -1009,3 +1013,59 @@ input[type="time"]:hover::-webkit-calendar-picker-indicator { opacity: 1; }
   .srv-row { grid-template-columns: 1fr auto; }
   .srv-row__dots { display: none; }
 }
+
+/* ===== HOME · NAV CARDS ===== */
+.nav-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+.nav-card {
+  display: flex; flex-direction: column;
+  padding: 32px 28px;
+  background: var(--paper-soft);
+  border-radius: 6px;
+  color: var(--ink);
+  transition: transform .2s ease, box-shadow .2s ease, background .2s;
+  min-height: 240px;
+}
+.nav-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px -16px color-mix(in srgb, var(--ink) 35%, transparent);
+  background: var(--paper);
+}
+.nav-card__num {
+  font-family: var(--display);
+  font-size: 13px; letter-spacing: .35em; text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.nav-card__title {
+  font-family: var(--display);
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: 500;
+  line-height: 1;
+  margin: 0 0 14px;
+  letter-spacing: -.01em;
+}
+.nav-card__lede {
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+  margin: 0 0 24px;
+  flex: 1;
+}
+.nav-card__cta {
+  font-size: 13px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+}
+.nav-card__arrow {
+  display: inline-block;
+  transition: transform .25s cubic-bezier(.5,.05,.2,1);
+}
+.nav-card:hover .nav-card__arrow { transform: translateX(6px); }

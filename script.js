@@ -281,9 +281,11 @@
   setupBookingForm(cfg);
 
   // === 16) Тень шапки при скролле ===
+  // На под-страницах без .hero — топбар всегда solid.
   const topbar = document.getElementById("topbar");
+  const hasHero = !!document.querySelector(".hero");
   const onScroll = () => {
-    if (window.scrollY > 24) topbar.classList.add("is-scrolled");
+    if (!hasHero || window.scrollY > 24) topbar.classList.add("is-scrolled");
     else topbar.classList.remove("is-scrolled");
   };
   window.addEventListener("scroll", onScroll, { passive: true });
