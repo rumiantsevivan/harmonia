@@ -31,17 +31,21 @@
   // Бургер-меню (мобила)
   const burger = document.getElementById("burgerBtn");
   const nav = document.getElementById("siteNav");
+  const siteHeader = document.querySelector(".site-header");
+  function setMenuState(open) {
+    nav.classList.toggle("is-open", open);
+    burger.setAttribute("aria-expanded", open ? "true" : "false");
+    // На главной шапка прозрачна над hero — при открытии меню
+    // временно делаем её solid, чтобы меню и шапка слились
+    if (siteHeader) siteHeader.classList.toggle("is-menu-open", open);
+  }
   if (burger && nav) {
     burger.addEventListener("click", () => {
-      const open = nav.classList.toggle("is-open");
-      burger.setAttribute("aria-expanded", open ? "true" : "false");
+      setMenuState(!nav.classList.contains("is-open"));
     });
     // Закрытие по клику на ссылку
     nav.addEventListener("click", (e) => {
-      if (e.target.tagName === "A") {
-        nav.classList.remove("is-open");
-        burger.setAttribute("aria-expanded", "false");
-      }
+      if (e.target.tagName === "A") setMenuState(false);
     });
   }
 

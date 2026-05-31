@@ -292,6 +292,19 @@ function runApp() {
     onScroll();
   }
 
+  // === 16b) Прозрачная шапка над hero (только на главной) ===
+  const isHome = document.body.dataset.page === "home";
+  const siteHeader = document.querySelector(".site-header");
+  if (isHome && siteHeader) {
+    siteHeader.classList.add("site-header--over-hero");
+    const onSiteScroll = () => {
+      if (window.scrollY > 80) siteHeader.classList.add("is-scrolled");
+      else siteHeader.classList.remove("is-scrolled");
+    };
+    window.addEventListener("scroll", onSiteScroll, { passive: true });
+    onSiteScroll();
+  }
+
   // ---- утилиты ----
   function escapeHtml(s) {
     return String(s).replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));

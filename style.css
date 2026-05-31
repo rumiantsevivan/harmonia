@@ -1702,6 +1702,61 @@ input[type="time"]:hover::-webkit-calendar-picker-indicator { opacity: 1; }
    v2.3 mobile fixes
    ============================================================ */
 
+/* Прозрачная шапка над hero (только на главной), плавный переход в paper при скролле.
+   Класс .site-header--over-hero ставится из script.js, .is-scrolled — оттуда же. */
+.site-header { transition: background .25s, border-color .25s, color .25s; }
+.site-header--over-hero:not(.is-scrolled) {
+  background: transparent;
+  border-bottom-color: transparent;
+}
+.site-header--over-hero:not(.is-scrolled) .site-header__brand,
+.site-header--over-hero:not(.is-scrolled) .site-header__nav a {
+  color: var(--paper);
+}
+.site-header--over-hero:not(.is-scrolled) .site-header__nav a:hover,
+.site-header--over-hero:not(.is-scrolled) .site-header__nav a.is-active {
+  color: var(--paper);
+}
+.site-header--over-hero:not(.is-scrolled) .site-header__nav a.is-active::after {
+  background: var(--paper);
+}
+.site-header--over-hero:not(.is-scrolled) .site-header__cta {
+  color: var(--paper);
+  border-color: color-mix(in srgb, var(--paper) 60%, transparent);
+}
+.site-header--over-hero:not(.is-scrolled) .site-header__cta:hover {
+  background: var(--paper); color: var(--ink); border-color: var(--paper);
+}
+.site-header--over-hero:not(.is-scrolled) .site-header__burger span {
+  background: var(--paper);
+}
+.site-header--over-hero:not(.is-scrolled) .site-header__mark {
+  color: var(--accent);
+}
+/* Когда бургер-меню открыто — шапка временно solid, как при скролле,
+   чтобы навигация-плашка и шапка визуально слились в одно целое.
+   ВАЖНО: перекрываем правило .is-active из transparent-over-hero
+   (у того специфичность выше), поэтому явно добавляем .is-active. */
+.site-header--over-hero.is-menu-open {
+  background: var(--paper);
+  border-bottom-color: var(--line);
+}
+.site-header--over-hero.is-menu-open .site-header__brand,
+.site-header--over-hero.is-menu-open .site-header__nav a,
+.site-header--over-hero.is-menu-open .site-header__nav a:hover {
+  color: var(--ink);
+}
+.site-header--over-hero.is-menu-open .site-header__nav a.is-active {
+  color: var(--accent);
+}
+.site-header--over-hero.is-menu-open .site-header__cta {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.site-header--over-hero.is-menu-open .site-header__burger span {
+  background: var(--ink);
+}
+
 /* Безопасная зона iOS (notch) — для шапки и для первой секции */
 /* Компенсация overlay-шапки (position:fixed): отступ сверху ≥ высоты шапки */
 .home-hero {
